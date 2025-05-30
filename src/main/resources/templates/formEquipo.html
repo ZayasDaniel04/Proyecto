@@ -1,21 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="index :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrar Equipo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-<p class="text-success" th:if="${param.exito}">Equipo dado de alta exitosamente </p>
-<hr>
-<form th:action="@{tienda/guardar}" th:object="${equipo}" th:method="post">
+<nav th:replace="index :: navbar"></nav>
 
-    <label>Nombre:</label> <input type="text" name="nombre" id="nombre" th:field="*{nombre}">
-    <label>Apodo:</label> <input type="text" name="apodo" id="apodo" th:field="*{apodo}">
-    <label>Estadio:</label> <input type="text" name="estadio" id="estadio" th:field="*{estadio}">
-    <label>Titulos de liga:</label> <input type="text" name="titulosLiga" id="titulosLiga" th:field="*{titulosLiga}">
-    <label>Imagen (url):</label> <input type="text" name="imagen" id="imagen" th:field="*{imagen}">
-    <button type="submit">Enviar</button>
-</form>
+<main class="container flex-fill mt-5">
+    <p class="text-success" th:if="${param.exito}">Equipo dado de alta exitosamente</p>
+    <hr>
+
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Registrar Nuevo Equipo</h2>
+        <form th:action="@{tienda/guardar}" th:object="${equipo}" th:method="post">
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="apodo" class="form-label">Apodo:</label>
+                <input type="text" class="form-control" id="apodo" th:field="*{apodo}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="estadio" class="form-label">Estadio:</label>
+                <input type="text" class="form-control" id="estadio" th:field="*{estadio}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="titulosLiga" class="form-label">Títulos de liga:</label>
+                <input type="number" class="form-control" id="titulosLiga" th:field="*{titulosLiga}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen (URL):</label>
+                <input type="text" class="form-control" id="imagen" th:field="*{imagen}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="index :: footer"></footer>
+<div th:replace="index :: jsincludes"></div>
+
 </body>
 </html>

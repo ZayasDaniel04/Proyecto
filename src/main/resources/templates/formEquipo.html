@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p class="text-success" th:if="${param.exito}">Equipo dado de alta exitosamente </p>
+<hr>
+<form th:action="@{tienda/guardar}" th:object="${equipo}" th:method="post">
+
+    <label>Nombre:</label> <input type="text" name="nombre" id="nombre" th:field="*{nombre}">
+    <label>Apodo:</label> <input type="text" name="apodo" id="apodo" th:field="*{apodo}">
+    <label>Estadio:</label> <input type="text" name="estadio" id="estadio" th:field="*{estadio}">
+    <label>Titulos de liga:</label> <input type="text" name="titulosLiga" id="titulosLiga" th:field="*{titulosLiga}">
+    <label>Imagen (url):</label> <input type="text" name="imagen" id="imagen" th:field="*{imagen}">
+    <button type="submit">Enviar</button>
+</form>
+</body>
+</html>

@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="index :: head">
     <meta charset="UTF-8">
     <title>Registrar Equipo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 <nav th:replace="index :: navbar"></nav>
 
-<main class="container flex-fill mt-5">
-    <p class="text-success" th:if="${param.exito}">Equipo dado de alta exitosamente</p>
-    <hr>
+<main class="container flex-fill d-flex justify-content-center align-items-center mt-4 mb-5">
+    <div class="card shadow-sm p-4 w-100" style="max-width: 600px;">
+        <h3 class="text-center mb-4 text-primary">
+            <i class="bi bi-plus-circle-fill me-2"></i>Registrar Nuevo Equipo
+        </h3>
 
-    <div class="card shadow p-4">
-        <h2 class="mb-4">Registrar Nuevo Equipo</h2>
-        <form th:action="@{tienda/guardar}" th:object="${equipo}" th:method="post">
+        <!-- Mensaje de éxito -->
+        <div th:if="${param.exito}" class="alert alert-success alert-dismissible fade show">
+            Equipo dado de alta exitosamente
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
 
+        <form th:action="@{/tienda/guardar}" th:object="${equipo}" method="post">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
@@ -42,13 +48,20 @@
                 <input type="text" class="form-control" id="imagen" th:field="*{imagen}" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-lg me-1"></i>Registrar
+                </button>
+            </div>
         </form>
     </div>
 </main>
 
 <footer th:replace="index :: footer"></footer>
 <div th:replace="index :: jsincludes"></div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </body>
 </html>

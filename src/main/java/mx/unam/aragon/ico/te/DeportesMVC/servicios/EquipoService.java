@@ -5,15 +5,18 @@ import mx.unam.aragon.ico.te.DeportesMVC.modelos.Equipo;
 import mx.unam.aragon.ico.te.DeportesMVC.repositorios.EquipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+
 
 @Service
 public class EquipoService {
     @Autowired
     private EquipoRepository equipoRepository;
+
     public boolean guardarEquipo(Equipo equipo) {
 
-         Equipo resultado = equipoRepository.save(equipo);
-         return resultado != null;
+        Equipo resultado = equipoRepository.save(equipo);
+        return resultado != null;
     }
 
     public Equipo getEquipo(Integer id) {
@@ -35,4 +38,9 @@ public class EquipoService {
         }
         return false;
     }
+
+    public List<Equipo> getTodosLosEquipos() {
+        return equipoRepository.findAll(); // Asegúrate que no devuelve null
+    }
+
 }

@@ -1,64 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="index :: head">
     <meta charset="UTF-8">
     <title>Actualizar Equipo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="d-flex flex-column min-vh-100"> <!-- Cambiado aquí -->
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 <nav th:replace="index :: navbar"></nav>
 
-<!-- Contenido principal con flex-fill -->
-<div class="container flex-fill mt-4">
-    <!-- Mensajes -->
-    <div th:if="${mensajeExito}" class="alert alert-success">
-        <span th:text="${mensajeExito}"></span>
+<main class="container flex-fill d-flex justify-content-center align-items-center mt-4 mb-5">
+    <div class="card shadow-sm p-4 w-100" style="max-width: 600px;">
+        <h3 class="text-center mb-4 text-primary">
+            <i class="bi bi-pencil-square me-2"></i>Actualizar Equipo
+        </h3>
+
+        <!-- Mensaje de éxito -->
+        <div th:if="${mensajeExito}" class="alert alert-success alert-dismissible fade show">
+            <span th:text="${mensajeExito}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div th:if="${mensajeError}" class="alert alert-danger alert-dismissible fade show">
+            <span th:text="${mensajeError}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+
+        <form th:action="@{/tienda/actualizar}" th:object="${equipo}" method="post">
+            <div class="mb-3">
+                <label for="id" class="form-label fw-semibold">ID del Equipo:</label>
+                <input type="number" class="form-control" id="id" th:field="*{id}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="apodo" class="form-label">Apodo:</label>
+                <input type="text" class="form-control" id="apodo" th:field="*{apodo}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="estadio" class="form-label">Estadio:</label>
+                <input type="text" class="form-control" id="estadio" th:field="*{estadio}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="titulosLiga" class="form-label">Títulos de Liga:</label>
+                <input type="number" class="form-control" id="titulosLiga" th:field="*{titulosLiga}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen (URL):</label>
+                <input type="text" class="form-control" id="imagen" th:field="*{imagen}" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle-fill me-1"></i> Actualizar
+                </button>
+            </div>
+        </form>
     </div>
-    <div th:if="${mensajeError}" class="alert alert-danger">
-        <span th:text="${mensajeError}"></span>
-    </div>
-
-    <h2>Actualizar Equipo</h2>
-    <form th:action="@{/tienda/actualizar}" th:object="${equipo}" method="post">
-
-        <!-- Campo ID -->
-        <div class="mb-3">
-            <label class="form-label">ID del Equipo:</label>
-            <input type="number" class="form-control" th:field="*{id}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Nombre:</label>
-            <input type="text" class="form-control" th:field="*{nombre}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Apodo:</label>
-            <input type="text" class="form-control" th:field="*{apodo}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Estadio:</label>
-            <input type="text" class="form-control" th:field="*{estadio}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Títulos de Liga:</label>
-            <input type="number" class="form-control" th:field="*{titulosLiga}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Imagen (URL):</label>
-            <input type="text" class="form-control" th:field="*{imagen}" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </form>
-</div>
+</main>
 
 <footer th:replace="index :: footer"></footer>
 <div th:replace="index :: jsincludes"></div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </body>
 </html>

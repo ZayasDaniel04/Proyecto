@@ -70,10 +70,10 @@ public class DeporteController {
     }
 
     // Mostrar formulario vacío para actualización
-    @GetMapping("/actualizar")
-    public String mostrarFormularioVacio(Model model) {
-        model.addAttribute("equipo", new Equipo());
-        return "actualizarEquipo";
+    @GetMapping("/seleccion")
+        public String mostrarFormularioVacio(Model model) {
+            model.addAttribute("equipo", new Equipo());
+            return "seleccionActualizar";
     }
 
     // Mostrar formulario de actualización con equipo específico
@@ -86,6 +86,7 @@ public class DeporteController {
         model.addAttribute("equipo", equipo);
         return "actualizarEquipo";
     }
+
 
     // Procesar la actualización
     @PostMapping("/actualizar")

@@ -41,8 +41,8 @@ public class DeporteController {
 
     @GetMapping("/nuevo")
     public String nuevo(Model model) {
-        model.addAttribute("equipo", new Equipo(1, "Club America", "Aguilas", "Azteca", 15,
-                "https://i.etsystatic.com/32229139/r/il/b5d5ff/4004851799/il_fullxfull.4004851799_f3zq.jpg"));
+        model.addAttribute("equipo", new Equipo(1, "", "", "", 0 ,
+                ""));
         return "formEquipo";
     }
 
@@ -92,7 +92,6 @@ public class DeporteController {
         model.addAttribute("equipo", equipo);
         return "actualizarEquipo";
     }
-
 
     // Procesar la actualización
     @PostMapping("/actualizar")

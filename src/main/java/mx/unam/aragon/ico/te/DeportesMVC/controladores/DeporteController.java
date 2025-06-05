@@ -25,6 +25,12 @@ public class DeporteController {
         return "home";
     }
 
+    @GetMapping("/buscar")
+    public String buscarEquipo(Model model) {
+        model.addAttribute("equipo", new Equipo());
+        return "buscarEquipo";
+    }
+
     @GetMapping("/equipo/")
     public String equipo(Model model) {
         Equipo equipo = new Equipo(0, "Club Deportivo Guadalajara", "Rebaño Sagrado", "Akron", 12,
